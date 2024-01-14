@@ -36,7 +36,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    console.log(user);
     if (!user) {
       return res
         .status(200)
@@ -53,7 +52,7 @@ router.post("/login", async (req, res) => {
       });
       res
         .status(200)
-        .send({ message: "Login successful", success: true, data: token });
+        .send({ message: "Login successful", success: true, data: token ,user:user});
     }
   } catch (error) {
     console.log(error);
